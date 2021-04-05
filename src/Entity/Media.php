@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\MediaRepository;
+use App\Entity\Project;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MediaRepository;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
