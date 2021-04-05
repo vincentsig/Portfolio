@@ -31,7 +31,7 @@ class Project
      * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $description= null;
+    private ?string $description = null;
 
     /**
      * @var string|null

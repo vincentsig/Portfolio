@@ -22,7 +22,7 @@ class Skill
      * @var string|null
      * @ORM\Column(type="string", length=255)
      */
-    private ?string $name=  null;
+    private ?string $name =  null;
 
     /**
      * @var Media

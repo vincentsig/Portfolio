@@ -24,7 +24,7 @@ class Media
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $path= null;
+    private ?string $path = null;
 
     /**
      * @var UploadedFile|null
