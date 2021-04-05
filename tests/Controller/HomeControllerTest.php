@@ -2,24 +2,34 @@
 
 namespace App\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use App\Tests\Framework\WebTestCase;
 
-class HomeControllerTest extends KernelTestCase
+
+class HomeControllerTest extends WebTestCase
 {
-    private $entityManager;
 
-    protected function setUp() :void
-    {
-        $kernel = self::bootKernel();
 
-        DatabasePrimer::prime($kernel);
-
-    $this->entityManager = $kernel->getContainer()->get('doctrine')->getManager();
-    }
+  
 
     public function testItWorks()
-        {
-            $this->assertTrue(true);
-        }
+    {
+        $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     */
+    public function homeController_should_display_h1_content()
+    {
+      
+    $this->visit('/');
+    $this->crawler;
+
+    $this->assertResponseIsSuccessful();
+    $this->assertElementTextContains('About Me', $this->crawler->filter('h2'));
+        
+    }
+
+    
     
 }

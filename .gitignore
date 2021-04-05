@@ -19,9 +19,7 @@
 /uml/
 ###< UML diagrams>###
 
-### github actions temp ignored ###
-/.github/
-### github actions temp ignored ###
+
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
 /phpcs.xml
