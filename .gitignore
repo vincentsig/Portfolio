@@ -14,3 +14,11 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###< UML diagrams>###
+/uml/
+###< UML diagrams>###
+
+### github actions temp ignored ###
+/.github/
+### github actions temp ignored ###
