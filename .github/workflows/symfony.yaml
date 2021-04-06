@@ -30,7 +30,7 @@ jobs:
           coverage: xdebug
 
       - name: Setup Node
-       uses: actions/setup-node@v1
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
