@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Tests;
 
@@ -7,7 +7,6 @@ use App\Tests\Framework\WebTestCase;
 
 class HomeControllerTest extends WebTestCase
 {
-
     public function testItWorks()
     {
         $this->assertTrue(true);
@@ -28,7 +27,6 @@ class HomeControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertElementTextContains('About Me', $this->crawler->filter('h2'));
-        $this->assertElementTextContains('first_skill', $this->crawler->filter('p'));   
+        $this->assertElementTextContains('first_skill', $this->crawler->filter('p'));
     }
-    
 }

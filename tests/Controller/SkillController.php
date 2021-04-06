@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Tests;
 
@@ -7,8 +7,4 @@ use App\Tests\Framework\WebTestCase;
 
 class SkillControllerTest extends WebTestCase
 {
-
-
-
-
 }
