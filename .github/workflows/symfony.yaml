@@ -29,15 +29,15 @@ jobs:
           extensions: mbstring, xml, ctype, iconv, intl
           coverage: xdebug
 
-      #- name: Setup Node
-      # uses: actions/setup-node@v1
-      #  with:
-      #    node-version: ${{ matrix.node-version }}
+      - name: Setup Node
+       uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
-      #- name: Install NPM dependencies
-      #  run: |
-      #   npm install
-      #    npm run dev
+      - name: Install NPM dependencies
+        run: |
+          npm install
+          npm run dev
 
       - name: Install Composer dependencies
         run: |
