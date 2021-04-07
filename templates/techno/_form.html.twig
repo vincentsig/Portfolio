@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+{{ form_row(form.name) }}
+{{ form_row(form.slug) }}
+<button>{{ button_label|default('Create') }}</button>
+{{ form_end(form) }}
