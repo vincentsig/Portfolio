@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Skills
+{% endblock %}
+
+{% block body %}
+	<h1>Edit skill</h1>
+	<div>
+		{% if skill.media.path is defined %}
+			<img src="{{asset('build/' ~ skill.media.path ) | imagine_filter('my_thumb')}}" alt="test">
+		{% else %}
+			<img src="{{asset('build/images/icone_default.png') | imagine_filter('my_thumb')}}" alt="test">
+		{% endif %}
+		{{include ('skill/_form.html.twig')}}
+	</div>
+
+{% endblock %}
