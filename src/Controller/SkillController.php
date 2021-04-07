@@ -47,10 +47,10 @@ class SkillController extends AbstractController
      */
     public function create(Request $request, FileUploader $uploader): Response
     {
-        $skill = new Skill;
-        
+        $skill = new Skill();
+    
         $form = $this->createForm(SkillType::class, $skill)->handleRequest($request);
-      
+
         if ($form->isSubmitted() && $form->isValid()) {
             $uploader->upload($skill->getMedia());
 
@@ -62,7 +62,7 @@ class SkillController extends AbstractController
 
             return $this->redirectToRoute('app_skill_list');
         }
-        
+    
         return $this->render("skill/create.html.twig", ["form" => $form->createView()]);
     }
 
@@ -82,7 +82,7 @@ class SkillController extends AbstractController
             if ($skill->getMedia() && $form->getData()->getMedia()) {
                 $uploader->removeFile($skill->getMedia());
             }
-            
+
             $uploader->upload($skill->getMedia());
 
             $this->em->persist($skill);

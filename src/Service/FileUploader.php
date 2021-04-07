@@ -39,7 +39,7 @@ class FileUploader
         $this->uploadAbsoluteDir = $uploadAbsoluteDir;
         $this->uploadDirImages = $uploadDirImages;
     }
-    
+        
     /**
      * @param Media $media
      */
