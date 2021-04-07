@@ -72,9 +72,9 @@ class Media
     }
 
     /**
-     * @param string|null
+     * @param UploadedFile|null
      */
-    public function setFile(?string $file): self
+    public function setFile(?UploadedFile $file): self
     {
         $this->file = $file;
 
