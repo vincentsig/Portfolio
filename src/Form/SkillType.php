@@ -15,8 +15,7 @@ class SkillType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('media', MediaType::class, [
-                
+            ->add('media', MediaType::class, [    
                 'required' => false,
             ])    
         ;

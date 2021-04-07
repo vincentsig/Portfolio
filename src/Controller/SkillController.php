@@ -27,7 +27,7 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/list", name="app_skill_list")
-     * 
+     *
      * @param SkillRepository $repo
      * @return Response
      */
@@ -40,7 +40,7 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/create", name="app_skill_create")
-     * 
+     *
      * @param Request $request
      * @param FileUploader $uploader
      * @return Response
@@ -68,7 +68,7 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="app_skill_edit")
-     * 
+     *
      * @param Request $request
      * @param Skill $skill
      * @param FileUploader $uploader
@@ -79,10 +79,10 @@ class SkillController extends AbstractController
         $form = $this->createForm(SkillType::class, $skill)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-         
             if ($skill->getMedia() && $form->getData()->getMedia()) {
                 $uploader->removeFile($skill->getMedia());
             }
+            
             $uploader->upload($skill->getMedia());
 
             $this->em->persist($skill);
@@ -101,7 +101,7 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="app_skill_delete")
-     * 
+     *
      * @param Request $request
      * @param Skill $skill
      * @param FileUploader $uploader
@@ -113,6 +113,7 @@ class SkillController extends AbstractController
             if ($skill->getMedia()) {
                 $uploader->removeFile($skill->getMedia());
             }
+
             $this->em->remove($skill);
             $this->em->flush();
 
