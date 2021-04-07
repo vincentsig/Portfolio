@@ -1,6 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SkillController!
+{% block title %}Skills!
 {% endblock %}
 
-{% block body %}{% endblock %}
+
+{% block body %}
+	<h1>
+		Skills management</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Skills</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for skill in skills %}
+				<tr>
+					<td>{{skill.name}}</td>
+					<td>
+						<a href="{{ path('app_skill_edit', {'id': skill.id} ) }}">edit</a>
+					</td>
+					<td>
+						{% include 'skill/_form_delete.html.twig' %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
