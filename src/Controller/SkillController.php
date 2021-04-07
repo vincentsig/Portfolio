@@ -27,6 +27,7 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/list", name="app_skill_list")
+     * 
      * @param SkillRepository $repo
      * @return Response
      */
@@ -39,7 +40,9 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/create", name="app_skill_create")
+     * 
      * @param Request $request
+     * @param FileUploader $uploader
      * @return Response
      */
     public function create(Request $request, FileUploader $uploader): Response
@@ -49,7 +52,6 @@ class SkillController extends AbstractController
         $form = $this->createForm(SkillType::class, $skill)->handleRequest($request);
       
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $uploader->upload($skill->getMedia());
 
             $this->em->persist($skill->getMedia());
@@ -66,8 +68,10 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="app_skill_edit")
+     * 
      * @param Request $request
      * @param Skill $skill
+     * @param FileUploader $uploader
      * @return Response
      */
     public function edit(Request $request, Skill $skill, FileUploader $uploader): Response
@@ -75,6 +79,10 @@ class SkillController extends AbstractController
         $form = $this->createForm(SkillType::class, $skill)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+         
+            if ($skill->getMedia() && $form->getData()->getMedia()) {
+                $uploader->removeFile($skill->getMedia());
+            }
             $uploader->upload($skill->getMedia());
 
             $this->em->persist($skill);
@@ -93,15 +101,18 @@ class SkillController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="app_skill_delete")
+     * 
      * @param Request $request
      * @param Skill $skill
+     * @param FileUploader $uploader
      * @return Response
      */
     public function delete(Request $request, Skill $skill, FileUploader $uploader): Response
     {
-       
         if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->get('_token'))) {
-            $uploader->removeFile($skill->getMedia());
+            if ($skill->getMedia()) {
+                $uploader->removeFile($skill->getMedia());
+            }
             $this->em->remove($skill);
             $this->em->flush();
 

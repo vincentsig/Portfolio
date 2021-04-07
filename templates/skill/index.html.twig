@@ -5,28 +5,29 @@
 
 
 {% block body %}
-	<h1>
-		Skills management</h1>
-	<table>
-		<thead>
+<h1>
+	Skills management</h1>
+<table class="styled-table">
+	<thead>
+		<tr>
+			<th>Skills</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for skill in skills %}
 			<tr>
-				<th>Skills</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for skill in skills %}
-				<tr>
-					<td>{{skill.name}}</td>
-					<td>
+				<td>{{skill.name}}</td>
+				<td>
+					<button>
+
 						<a href="{{ path('app_skill_edit', {'id': skill.id} ) }}">edit</a>
-					</td>
-					<td>
-						{% include 'skill/_form_delete.html.twig' %}
-					</td>
-				</tr>
-			{% endfor %}
+					</button>
+				</td>
+				<td>
+					{% include 'skill/_form_delete.html.twig' %}</td>
+			</tr>
 		</tbody>
-	</table>
-{% endblock %}
+	</tbody>
+</tr>{% endfor %}</tbody></table>{% endblock %}
