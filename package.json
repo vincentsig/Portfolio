@@ -15,5 +15,14 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.9.2",
+        "bootstrap": "^4.6.0",
+        "ckeditor4": "github:ckeditor/ckeditor4-releases",
+        "jquery": "^3.6.0",
+        "node-sass": "^5.0.0",
+        "popper.js": "^1.16.1",
+        "sass-loader": "^11.0.1"
     }
 }

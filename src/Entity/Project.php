@@ -5,8 +5,8 @@ namespace App\Entity;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProjectRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -46,10 +46,10 @@ class Project
     private ?string $slug = null;
 
     /**
-     * @var Collection
-     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="project", orphanRemoval=true)
+     * @var Media
+     * @ORM\OneToOne(targetEntity=Media::class, cascade={"persist", "remove"})
      */
-    private $media = null;
+    private $media;
 
     /**
      * @var DateTimeInterface
@@ -59,7 +59,7 @@ class Project
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
+       $this->setCreatedAt(new \DateTime('now'));
     }
 
     /**
@@ -139,31 +139,19 @@ class Project
     }
 
     /**
-     * @return Collection|Media[]
+     * @return Media
      */
-    public function getMedia(): Collection
+    public function getMedia(): ?Media
     {
         return $this->media;
     }
 
-    public function addMedium(Media $medium): self
+    /**
+     * @param Media
+     */
+    public function setMedia(?Media $media): self
     {
-        if (!$this->media->contains($medium)) {
-            $this->media[] = $medium;
-            $medium->setProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMedium(Media $medium): self
-    {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getProject() === $this) {
-                $medium->setProject(null);
-            }
-        }
+        $this->media = $media;
 
         return $this;
     }

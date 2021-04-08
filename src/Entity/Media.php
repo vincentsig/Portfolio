@@ -32,10 +32,6 @@ class Media
      */
     private ?UploadedFile $file = null;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="media")
-     */
-    private $project;
 
     /**
      * @return string|null
@@ -81,15 +77,5 @@ class Media
         return $this;
     }
 
-    public function getProject(): ?Project
-    {
-        return $this->project;
-    }
 
-    public function setProject(?Project $project): self
-    {
-        $this->project = $project;
-
-        return $this;
-    }
 }

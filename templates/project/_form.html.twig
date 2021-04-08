@@ -2,6 +2,9 @@
 {{ form_errors(form) }}
 
 {{ form_row(form.name) }}
-{{ form_row(form.media.file) }}
+{{ form_row(form.description) }}
+{{ form_row(form.link) }}
+{{ form_row(form.slug) }}
+{{ form_row(form.media.file)}}
 <button class="btn btn-success ml-2 float-right">{{ button_label|default('Create') }}</button>
 {{ form_end(form) }}

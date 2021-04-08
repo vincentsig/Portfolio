@@ -1,0 +1,13 @@
+<div>
+	{% for project in projects %}
+		<p>{{project.name}}</p>
+		<div>
+			{{project.description|raw}}
+			{{project.link}}
+			
+		</div>
+
+
+	{% endfor %}
+</div>
+

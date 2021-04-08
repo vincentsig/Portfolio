@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}projects!
+{% endblock %}
+
+
+{% block body %}
+<h1>projects management</h1>
+
+<button type="button" class="btn btn-primary">Add New project</button>
+<table class="styled-table">
+	<thead>
+		<tr>
+			<th>projects</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for project in projects %}
+			<tr>
+				<td>{{project.name}}</td>
+				<td>
+					<button>
+
+						<a href="{{ path('app_project_edit', {'id': project.id} ) }}">edit</a>
+					</button>
+				</td>
+				<td>
+					{% include 'project/_form_delete.html.twig' %}</td>
+			</tr>
+		</tbody>
+	</tbody>
+</tr>{% endfor %}
+</tbody>
+</table>
+{% endblock %}
