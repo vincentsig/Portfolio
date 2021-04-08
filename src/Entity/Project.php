@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProjectRepository;
-
-
 
 /**
  * @ORM\Entity(repositoryClass=ProjectRepository::class)
@@ -57,9 +57,30 @@ class Project
      */
     private ?DateTimeInterface $createdAt = null;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $urlGithub;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $urlWebsite;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Techno::class, inversedBy="project")
+     */
+    private $technos;
+
     public function __construct()
     {
-       $this->setCreatedAt(new \DateTime('now'));
+        $this->setCreatedAt(new \DateTime('now'));
+        $this->technos = new ArrayCollection();
     }
 
     /**
@@ -170,6 +191,109 @@ class Project
     public function setCreatedAt(?\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @return null|string
+     */
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    /**
+     *
+     * @param null|string $content
+     * @return Project
+     */
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @return null|string
+     */
+    public function getUrlGithub(): ?string
+    {
+        return $this->urlGithub;
+    }
+
+    /**
+     *
+     * @param null|string $urlGithub
+     * @return Project
+     */
+    public function setUrlGithub(?string $urlGithub): self
+    {
+        $this->urlGithub = $urlGithub;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @return null|string
+     */
+    public function getUrlWebsite(): ?string
+    {
+        return $this->urlWebsite;
+    }
+
+    /**
+     *
+     * @param null|string $urlWebsite
+     * @return Project
+     */
+    public function setUrlWebsite(?string $urlWebsite): self
+    {
+        $this->urlWebsite = $urlWebsite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|techno[]
+     */
+    public function getTechnos(): Collection
+    {
+        return $this->technos;
+    }
+
+    /**
+     *
+     * @param Techno $techno
+     * @return Project
+     */
+    public function addTechno(techno $techno): self
+    {
+        if (!$this->technos->contains($techno)) {
+            $this->technos[] = $techno;
+            $techno->setProject($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     *
+     * @param Techno $techno
+     * @return Project
+     */
+    public function removeTechno(techno $techno): self
+    {
+        if ($this->technos->removeElement($techno)) {
+            // set the owning side to null (unless already changed)
+            if ($techno->getProject() === $this) {
+                $techno->setProject(null);
+            }
+        }
 
         return $this;
     }

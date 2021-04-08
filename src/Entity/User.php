@@ -15,6 +15,7 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
     private $id;
 
@@ -24,6 +25,7 @@ class User implements UserInterface
     private $email;
 
     /**
+     *
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -38,12 +40,20 @@ class User implements UserInterface
     {
         return $this->id;
     }
-
+    /**
+     *
+     * @return null|string
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     *
+     * @param string $email
+     * @return User
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;

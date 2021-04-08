@@ -52,7 +52,7 @@ class FileUploader
         }
     }
 
-    
+
 
     /**
      * @param Media $media

@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Project;
+use App\Entity\Techno;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -16,13 +18,19 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('description', TextType::class)
+            ->add('technos', EntityType::class, [
+                'class' => Techno::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+            ])
+            ->add('content', CKEditorType::class)
+            ->add('urlGithub', UrlType::class)
+            ->add('urlWebsite', UrlType::class)
+            ->add('slug', TextType::class)
             ->add('media', MediaType::class, [
                 'required' => false,
             ])
-            ->add('description', CKEditorType::class)
-            ->add('link', UrlType::class)
-            ->add('slug', TextType::class)
-
         ;
     }
 

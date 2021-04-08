@@ -49,9 +49,8 @@ class ProjectController extends AbstractController
 
         $form = $this->createForm(ProjectType::class, $project)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-    
             $uploader->upload($project->getMedia());
-            
+
             $this->em->persist($project->getMedia());
             $this->em->persist($project);
             $this->em->flush($project);
@@ -73,11 +72,12 @@ class ProjectController extends AbstractController
      */
     public function edit(Request $request, Project $project): Response
     {
-
         $form = $this->createForm(ProjectType::class, $project)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($project);
-            $this->em->flush($project);
+            $this->em->flush();
+
+            return $this->redirectToRoute("app_project_list");
         }
 
         return $this->render("project/edit.html.twig", [
@@ -86,16 +86,15 @@ class ProjectController extends AbstractController
     }
 
     /**
-    *@Route("/delete/{id}", name="app_project_delete") 
+    *@Route("/delete/{id}", name="app_project_delete")
     *
-    * @param Request $request 
-    * @param Project $projet 
+    * @param Request $request
+    * @param Project $projet
     * @return Response
-    */ 
+    */
     public function delete(Request $request, Project $project): Response
     {
         if ($this->isCsrfTokenValid('delete' . $project->getId(), $request->request->get('_token'))) {
-
             $this->em->remove($project);
             $this->em->flush();
 
