@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 
 {% block title %}Edit Skills
 {% endblock %}
@@ -11,7 +11,7 @@
 		{% else %}
 			<img src="{{asset('build/images/icone_default.png') | imagine_filter('my_thumb')}}" alt="test">
 		{% endif %}
-		{{include ('skill/_form.html.twig')}}
+		{{include ('admin/skill/_form.html.twig')}}
 	</div>
 
 {% endblock %}

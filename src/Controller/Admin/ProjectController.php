@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use App\Form\ProjectType;
@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
+ * ProjectController
  * @Route("/admin/projects")
  */
 class ProjectController extends AbstractController
@@ -32,7 +33,7 @@ class ProjectController extends AbstractController
      */
     public function index(ProjectRepository $repo): Response
     {
-        return $this->render("project/index.html.twig", [
+        return $this->render("admin/project/index.html.twig", [
             "projects" => $repo->findAll()
         ]);
     }
@@ -58,7 +59,7 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute("app_project_list");
         }
 
-        return $this->render("project/create.html.twig", [
+        return $this->render("admin/project/create.html.twig", [
             "form" => $form->createView()
         ]);
     }
@@ -80,7 +81,7 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute("app_project_list");
         }
 
-        return $this->render("project/edit.html.twig", [
+        return $this->render("admin/project/edit.html.twig", [
             "form" => $form->createView()
         ]);
     }

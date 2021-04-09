@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Skill;
 use App\Form\SkillType;
@@ -33,7 +33,7 @@ class SkillController extends AbstractController
      */
     public function index(SkillRepository $repo): Response
     {
-        return $this->render('skill/index.html.twig', [
+        return $this->render('admin/skill/index.html.twig', [
             "skills" => $repo->findAll()
         ]);
     }
@@ -63,7 +63,7 @@ class SkillController extends AbstractController
             return $this->redirectToRoute('app_skill_list');
         }
 
-        return $this->render("skill/create.html.twig", ["form" => $form->createView()]);
+        return $this->render("admin/skill/create.html.twig", ["form" => $form->createView()]);
     }
 
     /**
@@ -93,7 +93,7 @@ class SkillController extends AbstractController
             return $this->redirectToRoute('app_skill_list');
         }
 
-        return $this->render("skill/Edit.html.twig", [
+        return $this->render("admin/skill/Edit.html.twig", [
             "form" => $form->createView(),
             "skill" => $skill,
             ]);

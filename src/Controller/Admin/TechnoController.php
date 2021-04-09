@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Techno;
 use App\Form\TechnoType;
@@ -32,7 +32,7 @@ class TechnoController extends AbstractController
      */
     public function index(TechnoRepository $repo): Response
     {
-        return $this->render("techno/index.html.twig", [
+        return $this->render("admin/techno/index.html.twig", [
             'technos' => $repo->findAll(),
         ]);
     }
@@ -58,7 +58,7 @@ class TechnoController extends AbstractController
             return $this->redirectToRoute('app_techno_list');
         }
 
-        return $this->render('techno/create.html.twig', [
+        return $this->render('admin/techno/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }

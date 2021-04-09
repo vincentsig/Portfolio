@@ -1,0 +1,16 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block title %}Administration
+{% endblock %}
+
+{% block body %}
+	<div class="container mb-5">
+		<h1>Website management</h1>
+	</div>
+	
+	<div class="container d-flex justify-content-between">
+		<a class="btn btn-primary p-1" href="{{ path('app_project_list') }} " role="button">Projects management</a>
+		<a class="btn btn-primary p-1" href="{{ path('app_skill_list') }} " role="button">Skills management</a>
+		<a class="btn btn-primary p-1" href="{{ path('app_techno_list') }} " role="button">Technos management</a>
+	</div>
+{% endblock %}

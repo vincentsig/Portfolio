@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 
 {% block title %}Create Skills
 {% endblock %}
@@ -6,6 +6,6 @@
 {% block body %}
 	<h1>Create new skill</h1>
 	<div>
-		{{include ('skill/_form.html.twig')}}
+		{{include ('admin/skill/_form.html.twig')}}
 	</div>
 {% endblock %}

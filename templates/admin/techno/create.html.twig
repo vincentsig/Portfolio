@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/admin_base.html.twig' %}
 
 {% block title %}Create Technos
 {% endblock %}
@@ -6,6 +6,6 @@
 {% block body %}
 	<h1>Create new techno</h1>
 	<div>
-		{{include ('project/_form.html.twig')}}
+		{{include ('admin/techno/_form.html.twig')}}
 	</div>
 {% endblock %}

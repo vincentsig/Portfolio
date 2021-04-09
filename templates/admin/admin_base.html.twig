@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Welcome!
+			{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+	</head>
+
+	<body>
+		<header class="mb-5">
+			<nav class="navbar navbar-expand-md  navbar-dark bg-dark">
+				<a class="navbar-brand pb-2" href="{{path('app_home')}}">Navbar</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="{{path('app_home')}}">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="Projects">
+							<a class="nav-link" href="{{path('app_dashboard_index')}}">Dashboard</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_project_list')}}">Projects</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_skill_list')}}">Skills</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_techno_list')}}">Technos</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link " href="{{path('app_logout')}}">Log out</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		{% block body %}{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+{% block title %}
+	Projects!
+{% endblock %}
+
+
+{% block body %}
+	<div class="container mt-5">
+		<h1 class="mb-5">
+			Projects management
+		</h1>
+		<a href="{{path('app_project_create')}}" class="btn btn-primary mb-3">Add New Project</a>
+	</div>
+
+	<div class="container d-flex justify-content-between">
+		<table class="table table-bordered table-striped table-dark table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Projects</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for project in projects %}
+					<tr scope="row">
+						<td>
+							{{project.name}}
+						</td>
+						<td>
+							<a class="btn btn-primary" href="{{ path('app_project_edit', {'id': project.id} ) }}">
+								edit
+							</a>
+						</td>
+						<td>
+							{% include 'admin/project/_form_delete.html.twig' %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
