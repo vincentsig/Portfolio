@@ -18,8 +18,7 @@ class HomeController extends AbstractController
         SkillRepository $skillRepository,
         ProjectRepository $projectRepository,
         TechnoRepository $technoRepository
-        ): Response
-    {
+    ): Response {
         return $this->render('home/index.html.twig', [
             'skills' => $skillRepository->findAll(),
             'projects' => $projectRepository->findAll(),
