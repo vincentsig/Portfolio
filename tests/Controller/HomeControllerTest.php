@@ -26,7 +26,6 @@ class HomeControllerTest extends WebTestCase
         $this->crawler;
 
         $this->assertResponseIsSuccessful();
-        $this->assertElementTextContains('About Me', $this->crawler->filter('h2'));
-        $this->assertElementTextContains('first_skill', $this->crawler->filter('p'));
+        
     }
 }
