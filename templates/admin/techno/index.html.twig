@@ -11,28 +11,29 @@
 			Technos management
 		</h1>
 		<a href="{{path('app_techno_create')}}" class="btn btn-primary mb-3">Add New Techno</a>
-	</div>
-	<table class="table table-bordered table-striped table-dark table-bordered">
-		<thead>
-			<tr>
-				<th scope="col">Technos</th>
-				<th scope="col">Edit</th>
-				<th scope="col">Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for techno in technos %}
-				<tr scope="row">
-					<td>{{techno.name}}</td>
-					<td>
-						<a class="btn btn-primary" href="{{ path('app_techno_edit', {'id': techno.id} ) }}">
-							edit
-						</a>
-					</td>
-					<td>
-						{% include 'admin/techno/_form_delete.html.twig' %}</td>
+
+		<table class="table table-bordered table-striped table-dark table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Technos</th>
+					<th scope="col">Edit</th>
+					<th scope="col">Delete</th>
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for techno in technos %}
+					<tr scope="row">
+						<td>{{techno.name}}</td>
+						<td>
+							<a class="btn btn-primary" href="{{ path('app_techno_edit', {'id': techno.id} ) }}">
+								edit
+							</a>
+						</td>
+						<td>
+							{% include 'admin/techno/_form_delete.html.twig' %}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}

@@ -1,0 +1,14 @@
+<ul class="skills_list">
+	{% for skill in skills  %}
+		<li class="ctn_skills_list_box">
+			<div class="skills_list_box">
+				{% if skill.media.path is defined %}
+					<img class="skill_list_box_img" src="{{asset('build/' ~ skill.media.path ) | imagine_filter('my_thumb')}}" alt="{{skill.name}}">
+				{% else %}
+					<img class="skill_list_box_img" src="{{asset('build/images/icone_default.png') | imagine_filter('my_thumb')}}" alt="{{skill.name}}">
+				{% endif %}
+				<span>{{skill.name}}</span>
+			</div>
+		</li>
+	{% endfor %}
+</ul>

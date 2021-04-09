@@ -1,0 +1,36 @@
+<div class="ctnpage">
+	<div class="container-fluid">
+		<br/>
+		<br/>
+		<div class="portfolio_filters">
+			<button type="button" class="btn category-button" data-filter="all">
+				All
+			</button>
+			{% for techno in technos %}
+				<button type="button" class="btn category-button" data-filter="cat_{{techno.name | u.snake}}">
+					{{techno.name}}
+				</button>
+			{% endfor %}
+		</div>
+		<section class="portfolio_gallery">
+			{% for project in projects %}
+				<a href="#" class="portfolio_gallery_project all {% for techno in project.technos %} {{'cat_' ~ techno.name| u.snake}} {% endfor %}">
+					<img class="portfolio_gallery_project_img" src="{{asset('build/' ~ project.media.path)}}" alt="{{project.name}}"/>
+					<span class=" portfolio_gallery_project_name">{{project.name}}</span>
+				</a>
+			{% endfor %}
+		</section>
+	</div>
+	<!-- Svg portfolio -->
+	<svg xmlns="http://www.w3.org/2000/svg" class="svg-filters">
+		<filter id="duotone_vince">
+			<feColorMatrix type="matrix" result="grayscale" values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 1 0"/>
+			<feComponentTransfer color-interpolation-filters="sRGB" result="duotone_magenta_gold">
+				<feFuncR type="table" tablevalues="0.51 1"/>
+				<feFuncG type="table" tablevalues="0.18 0.33"/>
+				<feFuncB type="table" tablevalues="0.18 0.33"/>
+				<feFuncA type="table" tablevalues="0 1"/>
+			</feComponentTransfer>
+		</filter>
+	</svg>
+</div>

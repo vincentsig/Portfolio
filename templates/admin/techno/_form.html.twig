@@ -1,7 +1,9 @@
-{{ form_start(form) }}
-{{ form_errors(form) }}
+<div class="container">
+	{{ form_start(form) }}
+	{{ form_errors(form) }}
 
-{{ form_row(form.name) }}
-{{ form_row(form.media.file) }}
-<button class="btn btn-success ml-2 float-right">{{ button_label|default('Create') }}</button>
-{{ form_end(form) }}
+	{{ form_row(form.name) }}
+
+	<button class="btn btn-success ml-2 float-right">{{ button_label|default('Create') }}</button>
+	{{ form_end(form) }}
+</div>
