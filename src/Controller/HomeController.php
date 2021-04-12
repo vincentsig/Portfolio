@@ -20,11 +20,15 @@ class HomeController extends AbstractController
         SkillRepository $skillRepository,
         ProjectRepository $projectRepository,
         TechnoRepository $technoRepository,
-        MailerService $mailer,
-        Request $request
+        MailerService $mailer
+      , Request $request
     ): Response {
-        if ($mailer->sendEmail($request)) {
-            $this->redirectToRoute("app_home");
+
+        if($mailer->sendEmail($request))
+        {
+            $this->addFlash('success', 'Your message has been sent');
+
+            return $this->redirectToRoute("app_home");
         }
 
         return $this->render('home/index.html.twig', [
@@ -34,4 +38,6 @@ class HomeController extends AbstractController
             'form' => $mailer->getForm()->createView()
         ]);
     }
+
+
 }
