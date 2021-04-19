@@ -1,0 +1,7 @@
+artgris_file_manager:
+  web_dir: public
+  conf:
+    default:
+      dir: "../public/uploads/"
+      tree: true
+#            twig_extension: "$IMAGE$|resize"

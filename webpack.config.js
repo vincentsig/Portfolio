@@ -8,11 +8,11 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     // directory where compiled assets will be stored
-    .setOutputPath('public/build/')
+    .setOutputPath('public/build')
     // public path used by the web server to access the output path
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
-    //.setManifestKeyPrefix('build/')
+    //.setManifestKeyPrefix('build')
 
     /*
      * ENTRY CONFIG
@@ -45,6 +45,7 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
+ 
     .configureBabel((config) => {
         config.plugins.push('@babel/plugin-proposal-class-properties');
     })
@@ -57,11 +58,6 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
-
-    Encore.copyFiles({
-        from: './assets/images',
-        to: 'images/[path][name].[hash:8].[ext]'
-    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

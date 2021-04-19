@@ -15,7 +15,7 @@
 		<section class="portfolio_gallery">
 			{% for project in projects %}
 				<a href="#" class="portfolio_gallery_project all {% for techno in project.technos %} {{'cat_' ~ techno.name| u.snake}} {% endfor %}">
-					<img class="portfolio_gallery_project_img" src="{{asset('build/' ~ project.media.path)}}" alt="{{project.name}}"/>
+					<img class="portfolio_gallery_project_img" src="{{asset('uploads/' ~ project.media.path)}}" alt="{{project.name}}"/>
 					<span class=" portfolio_gallery_project_name">{{project.name}}</span>
 				</a>
 			{% endfor %}

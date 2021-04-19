@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Project;
 use App\Entity\Techno;
+use App\Entity\Project;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,7 +24,10 @@ class ProjectType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
             ])
-            ->add('content', CKEditorType::class)
+            ->add('content', CKEditorType::class, [
+                'config_name' => 'basic_config',
+                'label' => 'ckeditor',
+            ])
             ->add('urlGithub', UrlType::class)
             ->add('urlWebsite', UrlType::class)
             ->add('slug', TextType::class)

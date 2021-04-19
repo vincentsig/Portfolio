@@ -5,8 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
   uploadDir: "images"
-  uploadAbsoluteDir: "%kernel.project_dir%/assets/%uploadDir%"
-  uploadDirImages: "%kernel.project_dir%/assets/"
+  uploadAbsoluteDir: "%kernel.project_dir%/public/uploads/%uploadDir%"
+  uploadDirImages: "%kernel.project_dir%/public/uploads/"
   email: "contact@vincent-signoret.com"
 
 services:
@@ -17,7 +17,7 @@ services:
     bind:
       $uploadDir: "%uploadDir%"
       $uploadAbsoluteDir: "%uploadAbsoluteDir%"
-      $uploadDirImages: "%kernel.project_dir%/assets/"
+      $uploadDirImages: "%kernel.project_dir%"
       $email: "%email%"
 
   # makes classes in src/ available to be used as services
