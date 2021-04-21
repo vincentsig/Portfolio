@@ -4,11 +4,32 @@
 {% endblock %}
 
 {% block body %}
+	<div class="ctnpage">
+		<section class="hero">
+			<div class="hero_imgCtn">
+				<img src="https://vextermination.com/medias/moufette.png" alt="photo cover">
+			</div>
+			<div class="hero_content">
+				<h1>
+					Hello! My name is
+					<br>
+					<span class="hero_content_name">Vincent Signoret</span>
+					<br>
+					I'm a backend web developer
+				</h1>
+				<p class="hero_intro_hook">Do you want to know what is behind<span class="hero_intro_hook_undr">_</span>
+				</p>
+				<div class="hero_content_links">
+					<a class="main-link" href="#">Me</a>
+					<a class="main-link" href="#">My Projects</a>
+				</div>
+			</div>
+		</section>
 
-	{{include ('home/partials/_skill.html.twig')}}
+		{{include ('home/partials/_skill.html.twig')}}
 
-	{{include ('home/partials/_project.html.twig')}}
+		{{include ('home/partials/_project.html.twig')}}
 
-	{{include ('home/partials/_form_contact.html.twig')}}
-
+		{{include ('home/partials/_form_contact.html.twig')}}
+	</div>
 {% endblock %}
