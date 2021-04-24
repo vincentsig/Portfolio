@@ -4,10 +4,11 @@
 {% endblock %}
 
 {% block body %}
-	<div class="ctnpage">
-		<section class="hero">
+
+	<section class="hero">
+		<div class="ctnpage">
 			<div class="hero_imgCtn">
-				<img src="https://vextermination.com/medias/moufette.png" alt="photo cover">
+				<img src="images/background_2.jpg" alt="photo cover">
 			</div>
 			<div class="hero_content">
 				<h1>
@@ -20,16 +21,36 @@
 				<p class="hero_intro_hook">Do you want to know what is behind<span class="hero_intro_hook_undr">_</span>
 				</p>
 				<div class="hero_content_links">
-					<a class="main-link" href="#">Me</a>
-					<a class="main-link" href="#">My Projects</a>
+					<a class="main-link" href="#about">Me</a>
+					<a class="main-link" href="#projects">My Projects</a>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		{{include ('home/partials/_skill.html.twig')}}
+	<section id="about">
+		<div class="ctnpage">
+			<div class="about_me">
+				<div class="ctnpage">
+					<h2>Me</h2>
+					<p>I’m a backend developer, I build
+						<span class="special">PHP web application</span>
+						I’m specialized with the
+						<span class="special">Symfony Framework</span>.
+						<br>
+						<br>
+						I am a very curious and open-minded person and I’m not afraid to learn new technologies. I’m currently looking for a job, so if you are looking for a very motivated developer you can contact me.</p>
+				</div>
+			</div>
 
+			{{include ('home/partials/_skill.html.twig')}}
+		</div>
+	</section>
+
+	<section id="projects">
 		{{include ('home/partials/_project.html.twig')}}
+	</section>
 
-		{{include ('home/partials/_form_contact.html.twig')}}
-	</div>
+	{{include ('home/partials/_form_contact.html.twig')}}
+
 {% endblock %}

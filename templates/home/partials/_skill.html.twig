@@ -1,14 +1,20 @@
-<ul class="skills_list">
-	{% for skill in skills  %}
-		<li class="ctn_skills_list_box">
-			<div class="skills_list_box">
-				{% if skill.media.path is defined %}
-					<img class="skill_list_box_img" src="{{asset('uploads/images/' ~ skill.media.path ) | imagine_filter('my_thumb')}}" alt="{{skill.name}}">
-				{% else %}
-					<img class="skill_list_box_img" src="{{asset('uploads/images/icone_default.png') | imagine_filter('my_thumb')}}" alt="{{skill.name}}">
-				{% endif %}
-				<span>{{skill.name}}</span>
-			</div>
-		</li>
-	{% endfor %}
-</ul>
+<div class="bg_skills">
+	<div class="ctn_skills">
+		<h3>Skills</h3>
+		<ul class="skills_list">
+			{% for skill in skills  %}
+				<li class="ctn_skills_list_box">
+					<div class="skills_list_box">
+						{% if skill.media.path is defined %}
+							<img class="skill_list_box_img" src="{{asset('uploads/images/' ~ skill.media.path )}}" alt="{{skill.name}}">
+						{% else %}
+							<img class="skill_list_box_img" src="{{asset('uploads/images/icone_default.png')}}" alt="{{skill.name}}">
+						{% endif %}
+						<span>{{skill.name}}</span>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+</div>

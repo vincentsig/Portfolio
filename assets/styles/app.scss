@@ -37,6 +37,24 @@ body {
 .ctnpage {
   max-width: 1280px;
   margin: auto;
+  width: 100%;
+}
+
+h2 {
+  font-family: $titlefont;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 22px;
+  &::after {
+    content: "";
+    background: $underdecolight;
+    position: absolute;
+    bottom: -4px;
+    left: 0px;
+    height: 1.5px;
+    width: 75%;
+  }
 }
 
 img {
@@ -44,14 +62,20 @@ img {
 }
 
 header {
+  background-color: $bgblack;
+  width: 100%;
+}
+
+.ctnheader {
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: red;
   color: white;
   width: 100%;
   height: 5vh;
+  max-width: 1280px;
+  margin: auto;
 }
 
 .main-link {
@@ -76,14 +100,31 @@ header {
   }
 }
 
+@media only screen and (min-width: 728px) {
+  .ctnpage {
+    padding: 0px 30px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .ctnpage {
+    padding: 0px 30px;
+  }
+}
+
 /*
 /////////HERO//////////////
 */
 
-.hero {
+.hero .ctnpage {
   display: flex;
   flex-direction: column;
   height: 95vh;
+  align-items: center;
+}
+
+.hero_imgCtn {
+  background: url("../../public/images/background.jpg") no-repeat;
 }
 
 .hero_content {
@@ -100,6 +141,7 @@ header {
       font-size: 1.4em;
     }
   }
+
   .hero_intro_hook {
     margin-bottom: 30px;
   }
@@ -127,9 +169,143 @@ header {
   }
 }
 
+@media only screen and (min-width: 728px) {
+  .hero .ctnpage {
+    flex-direction: row-reverse;
+  }
+
+  .hero_content {
+    text-align: left;
+    padding: 0px;
+    width: 40%;
+
+    .hero_content_links {
+      justify-content: flex-start;
+    }
+
+    .main-link:first-child {
+      margin-right: 30px;
+    }
+  }
+
+  .hero_imgCtn {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .hero_content {
+    h1 {
+      font-size: 1.78em;
+      line-height: 1.8em;
+      .hero_content_name {
+        font-size: 48px;
+        line-height: 1.4em;
+      }
+    }
+  }
+
+  .hero_content_links {
+    .main-link {
+      font-size: 1.5em;
+    }
+  }
+}
+
+/*
+///////////ABOUT//////////
+*/
+
+#about {
+  background: $bgligth;
+  width: 100%;
+}
+
+#about .ctnpage {
+  display: flex;
+  flex-direction: column;
+  background: $bgligth;
+  padding: 0;
+  .about_me {
+    background: $bgligth;
+    padding: 40px 20px;
+    p {
+      text-align: justify;
+      color: $maintext;
+      .special {
+        color: $bgblack;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 728px) {
+  #about > .ctnpage {
+    display: flex;
+    flex-direction: row-reverse;
+    .about_me {
+      width: 50%;
+      padding: 40px 20px;
+      .ctnpage {
+        padding: 0 20px;
+      }
+      h2 {
+        text-align: right;
+        &::after {
+          right: 0;
+          left: inherit;
+        }
+      }
+      p {
+        text-align: right;
+        color: $maintext;
+        .special {
+          color: $bgblack;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #about {
+    background: $bgligth;
+    padding: 80px 0;
+  }
+  .ctnpage {
+    position: relative;
+  }
+
+  .about_me {
+    p {
+      position: absolute;
+      top: 50px;
+      background: $bgligth;
+      left: -20%;
+      z-index: 2;
+      text-align: right;
+      padding: 20px 40px;
+    }
+  }
+}
 /*
 /////////////SKILLS////////////
 */
+
+.bg_skills {
+  background: $bgblack;
+  border-bottom: 4px;
+  width: 100%;
+  padding: 50px 0px;
+  h3 {
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 50px;
+    letter-spacing: 0.2rem;
+  }
+}
 
 .skills_list {
   list-style: none;
@@ -138,6 +314,8 @@ header {
   max-width: 360px;
   flex-wrap: wrap;
   font-size: 11px;
+  margin: 0 auto;
+  padding-left: 31px;
   li {
     position: relative;
     height: 90px;
@@ -146,7 +324,7 @@ header {
     float: left;
   }
   .ctn2_skills_list_box {
-    padding-top: 10px;
+    padding-top: 100px;
   }
 }
 .skills_list_box {
@@ -181,6 +359,11 @@ header {
   color: white;
 }
 
+@media only screen and (min-width: 728px) {
+  .bg_skills {
+    width: 50%;
+  }
+}
 /*
 /////////////PROJECTS////////////
 */
@@ -255,6 +438,7 @@ header {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 @media screen and (max-width: 600px) {
   .portfolio_gallery {
     grid-template-columns: repeat(1, 1fr);
