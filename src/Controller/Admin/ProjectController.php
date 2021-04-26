@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
+
 
 /**
  * ProjectController
@@ -42,20 +45,25 @@ class ProjectController extends AbstractController
      * @Route("/create", name="app_project_create")
      *
      * @param Request $request
+     * @param FileUploader $uploader
+     * @param SluggerInterface $slugger
      * @return Response
      */
-    public function create(Request $request, FileUploader $uploader): Response
+    public function create(Request $request, FileUploader $uploader, SluggerInterface $slugger): Response
     {
         $project = new Project();
 
         $form = $this->createForm(ProjectType::class, $project)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $uploader->upload($project->getMedia());
 
+            $uploader->upload($project->getMedia());
+          
+            $project->setSlug($slugger->slug($project->getSlug(),"-"));
+           
             $this->em->persist($project->getMedia());
             $this->em->persist($project);
             $this->em->flush($project);
-
+            
             return $this->redirectToRoute("app_project_list");
         }
 

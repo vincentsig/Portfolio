@@ -7,6 +7,7 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
+import './styles/admin.scss'; 
 
 const $ = require('jquery');
 require('bootstrap');
@@ -14,7 +15,7 @@ require('bootstrap');
 import './bootstrap';
 
 
-// Skill partials
+// Skill partials 
 
 // Check pour la couleur
 function isEven(value) {

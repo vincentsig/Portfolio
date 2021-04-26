@@ -1,6 +1,5 @@
-{{ form_start(form) }}
+{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
 {{ form_errors(form) }}
-
 {{ form_row(form.name) }}
 {{ form_row(form.description) }}
 {{ form_row(form.urlGithub) }}
@@ -8,6 +7,6 @@
 {{ form_row(form.technos) }}
 {{ form_row(form.content) }}
 {{ form_row(form.slug) }}
-{{ form_row(form.media.file)}}
+{{ form_row(form.media.file) }}
 <button class="btn btn-success ml-2 float-right">{{ button_label|default('Create') }}</button>
 {{ form_end(form) }}

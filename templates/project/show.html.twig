@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Project
+{% endblock %}
+
+{% block body %}
+
+	{{project.name}}
+	{% for techno in project.technos %}
+		{{techno.name}}
+	{% endfor %}
+
+{% endblock %}

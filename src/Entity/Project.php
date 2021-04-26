@@ -6,6 +6,8 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Repository\ProjectRepository;
 
 /**
@@ -23,30 +25,29 @@ class Project
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     private ?string $name = null;
 
     /**
      * @var string|null
+     * @Assert\NotBlank
      * @ORM\Column(type="text", nullable=true)
      */
     private ?string $description = null;
 
-    /**
-     * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $link = null;
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
      */
     private ?string $slug = null;
 
     /**
      * @var Media
+     * @Assert\NotBlank
      * @ORM\OneToOne(targetEntity=Media::class, cascade={"persist", "remove"})
      */
     private $media;
@@ -58,11 +59,13 @@ class Project
     private ?DateTimeInterface $createdAt = null;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
     /**
+     * 
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $urlGithub;
@@ -73,6 +76,7 @@ class Project
     private $urlWebsite;
 
     /**
+     * @Assert\NotBlank
      * @ORM\ManyToMany(targetEntity=Techno::class, inversedBy="project")
      */
     private $technos;
@@ -119,24 +123,6 @@ class Project
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getLink(): ?string
-    {
-        return $this->link;
-    }
-
-    /**
-     * @param string|null
-     */
-    public function setLink(?string $link): self
-    {
-        $this->link = $link;
 
         return $this;
     }
