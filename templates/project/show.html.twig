@@ -5,10 +5,57 @@
 {% endblock %}
 
 {% block body %}
+	{% for project in projects %}
 
-	{{project.name}}
-	{% for techno in project.technos %}
-		{{techno.name}}
-	{% endfor %}
 
+		<section id="project-show_head">
+			<div class="ctnpage">
+				<h1>{{project.name}}</h1>
+
+				<p class="description">{{project.description}}</p>
+
+				<div class="ctntechnos">
+					{% for techno in project.technos %}
+
+						<div class="techno">
+							{{techno.name}}
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="ctnlinks">
+					{% if project.urlGithub %}
+						<a href="{{project.urlGithub}}" class="link">
+							GitHub
+						</a>
+					{% endif %}
+					{% if project.urlWebsite %}
+						<a href="{{project.urlWebsite}}" class="link">
+							WebSite
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</section>
+
+		<section id="project-show_content">
+			<div class="ctnpage">
+				{{project.content|raw}}
+			</div>
+		{% endfor %}
+
+		{% set pages = ((total / limit|round(0,'ceil'))) %}
+
+		<div class="ctnnavigation">
+			{% if page != 1 %}
+
+				<a href="?page={{ page - 1 }}">Previous</a>
+			{% endif %}
+			{% if page != pages %}
+
+				<a href="?page={{ page + 1 }}">Next</a>
+			{% endif %}
+		</div>
+
+	</section>
 {% endblock %}

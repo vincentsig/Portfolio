@@ -13,8 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-
-
 /**
  * ProjectController
  * @Route("/admin/projects")
@@ -55,15 +53,14 @@ class ProjectController extends AbstractController
 
         $form = $this->createForm(ProjectType::class, $project)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $uploader->upload($project->getMedia());
-          
-            $project->setSlug($slugger->slug($project->getSlug(),"-"));
-           
+
+            $project->setSlug($slugger->slug($project->getSlug(), "-"));
+
             $this->em->persist($project->getMedia());
             $this->em->persist($project);
             $this->em->flush($project);
-            
+
             return $this->redirectToRoute("app_project_list");
         }
 
@@ -79,12 +76,29 @@ class ProjectController extends AbstractController
      * @param Project $project
      * @return Response
      */
-    public function edit(Request $request, Project $project): Response
-    {
+    public function edit(
+        Request $request,
+        Project $project,
+        FileUploader $uploader,
+        SluggerInterface $slugger,
+        ProjectRepository $repo
+    ): Response {
+        $originalMedia = $repo->find($project)->getMedia()->getPath();
         $form = $this->createForm(ProjectType::class, $project)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->getData()->getMedia()->getFile()) {
+                $uploader->upload($project->getMedia());
+                $uploader->removeFile($originalMedia);
+            }
+
+            $project->setSlug($slugger->slug($project->getSlug(), "-"));
+
+            $this->em->persist($project->getMedia());
             $this->em->persist($project);
             $this->em->flush();
+
+
+
 
             return $this->redirectToRoute("app_project_list");
         }

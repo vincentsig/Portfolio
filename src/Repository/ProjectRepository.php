@@ -19,6 +19,20 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
+    public function getPaginatedAnnonces($page, $limit)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'ASC')
+            ->setFirstResult(($page * $limit) - $limit) // offset
+            ->setMaxResults($limit); // limit of the element
+
+        return $query->getQuery()->getResult();     
+    }
+
+
+
+    
+
     // /**
     //  * @return Project[] Returns an array of Project objects
     //  */

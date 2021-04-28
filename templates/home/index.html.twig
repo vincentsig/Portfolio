@@ -5,7 +5,7 @@
 
 {% block body %}
 
-	<section class="hero">
+	<section id="hero">
 		<div class="ctnpage">
 			<div class="hero_imgCtn">
 				<img src="images/background_2.jpg" alt="photo cover">
@@ -26,6 +26,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="divider divider-hero">
+			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280.667 200"><path d="M2130,599.067v200L849.333,798.4V735.345s802.144,108.194,1144.517-15.2C2073.5,691.438,2116.163,657.932,2130,599.067Z" transform="translate(-849.333 -599.067)" fill="#f1f1f1"/></svg>
+		</div>
 	</section>
 
 	<section id="about">
@@ -45,12 +48,33 @@
 
 			{{include ('home/partials/_skill.html.twig')}}
 		</div>
+
 	</section>
+
 
 	<section id="projects">
+		<div class="divider divider-about">
+			<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 120" preserveaspectratio="none">
+				<path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" class="shape-fill"></path>
+			</svg>
+		</div>
+
 		{{include ('home/partials/_project.html.twig')}}
+
 	</section>
 
-	{{include ('home/partials/_form_contact.html.twig')}}
+	<section id="contact">
+		<div class="divider divider-project">
+			<svg xmlns="http://www.w3.org/2000/svg" height="213" viewbox="0 0 1279 213"><path d="M2126,2032s-638.005,177.143-1279,179l1279,34Z" transform="translate(-847 -2032)" fill="#f1f1f1"/></svg>
+		</div>
 
+		<div class="ctnpage">
+			<h2>Contact</h2>
+			{{include ('home/partials/_contact.html.twig')}}
+
+		</div>
+
+	</section>
+	<div class="background-push"></div>
+	{{include ('home/partials/_footer.html.twig')}}
 {% endblock %}
