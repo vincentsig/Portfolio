@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Project
+{% endblock %}
+
+{% block body %}
+
+
+	<section id="project-show_head">
+		<div class="ctnpage">
+			<h1>{{project.name}}</h1>
+
+			<p class="description">{{project.description}}</p>
+
+			<div class="ctntechnos">
+				{% for techno in project.technos %}
+
+					<div class="techno">
+						{{techno.name}}
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="ctnlinks">
+				{% if project.urlGithub %}
+					<a href="{{project.urlGithub}}" class="link">
+						GitHub
+					</a>
+				{% endif %}
+				{% if project.urlWebsite %}
+					<a href="{{project.urlWebsite}}" class="link">
+						WebSite
+					</a>
+				{% endif %}
+			</div>
+		</div>
+	</section>
+
+	<section id="project-show_content">
+		<div class="ctnpage">
+			{{project.content|raw}}
+		</div>
+
+
+		<div class="ctnnavigation">
+
+			{% if previous %}
+				<a href="{{path('app_project_show',{'slug':previous}) }}">Previous</a>
+			{% else %}
+				<a href="" style="background:grey">first</a>
+			{% endif %}
+
+			{% if next %}
+				<a href="{{path('app_project_show',{'slug':next}) }}">next</a>
+			{% else %}
+				<a href="" style="background:grey">last</a>
+			{% endif %}
+
+		</div>
+
+	</section>
+{% endblock %}

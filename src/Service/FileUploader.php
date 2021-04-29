@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use App\Entity\Media;
+use App\Entity\Project;
+use App\Repository\ProjectRepository;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -53,11 +55,14 @@ class FileUploader
     }
 
     /**
-     * @param Media $media
+     *
      */
-    public function removeFile(Media $media): void
+    public function removeFile($mediaPath): void
     {
-        $filesystem = new Filesystem();
-        $filesystem->remove($this->uploadDirImages . $media->getpath());
+        if ($mediaPath) {
+            $filesystem = new Filesystem();
+            $filesystem->remove($this->uploadDirImages . $mediaPath);
+        }
+        return;
     }
 }

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * ProjectController
@@ -42,15 +43,19 @@ class ProjectController extends AbstractController
      * @Route("/create", name="app_project_create")
      *
      * @param Request $request
+     * @param FileUploader $uploader
+     * @param SluggerInterface $slugger
      * @return Response
      */
-    public function create(Request $request, FileUploader $uploader): Response
+    public function create(Request $request, FileUploader $uploader, SluggerInterface $slugger): Response
     {
         $project = new Project();
 
         $form = $this->createForm(ProjectType::class, $project)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $uploader->upload($project->getMedia());
+
+            $project->setSlug($slugger->slug($project->getSlug(), "-"));
 
             $this->em->persist($project->getMedia());
             $this->em->persist($project);
@@ -71,12 +76,29 @@ class ProjectController extends AbstractController
      * @param Project $project
      * @return Response
      */
-    public function edit(Request $request, Project $project): Response
-    {
+    public function edit(
+        Request $request,
+        Project $project,
+        FileUploader $uploader,
+        SluggerInterface $slugger,
+        ProjectRepository $repo
+    ): Response {
+        $originalMedia = $repo->find($project)->getMedia()->getPath();
         $form = $this->createForm(ProjectType::class, $project)->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->getData()->getMedia()->getFile()) {
+                $uploader->upload($project->getMedia());
+                $uploader->removeFile($originalMedia);
+            }
+
+            $project->setSlug($slugger->slug($project->getSlug(), "-"));
+
+            $this->em->persist($project->getMedia());
             $this->em->persist($project);
             $this->em->flush();
+
+
+
 
             return $this->redirectToRoute("app_project_list");
         }

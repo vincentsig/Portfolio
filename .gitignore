@@ -28,6 +28,7 @@
 /node_modules/
 npm-debug.log
 yarn-error.log
+/public/build/
 ###< symfony/webpack-encore-bundle ###
 
 ###> liip/imagine-bundle ###

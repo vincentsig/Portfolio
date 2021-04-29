@@ -69,8 +69,8 @@ class MailerService
     }
 
     /**
-     * 
-     * @return FormInterface 
+     *
+     * @return FormInterface
      */
     public function getForm(): FormInterface
     {
