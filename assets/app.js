@@ -8,12 +8,29 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 import './styles/admin.scss'; 
-
+import './animation.js'
 
 const $ = require('jquery');
 require('bootstrap');
 // start the Stimulus application
 import './bootstrap';
+
+
+// Effet Image Hero 
+
+$( ".meLink" ).mouseover(function() {
+    $( ".photobase" ).addClass( "hidehero" );
+    $( ".photoskill" ).addClass( "hidehero" );
+  }).mouseout(function() {
+      $( ".photobase" ).removeClass( "hidehero" );
+      $( ".photoskill" ).removeClass( "hidehero" );
+  });
+  
+  $( ".projectsLink" ).mouseover(function() {
+      $( ".photobase" ).addClass( "hidehero" );
+    }).mouseout(function() {
+        $( ".photobase" ).removeClass( "hidehero" );
+    });
 
 
 // Skill partials 
@@ -55,8 +72,6 @@ for (var i = 0; i < skillsboxctn.length; i++) {
 
 //Projects Partial
 
-// Ajout du focus sur le All des le debut
-$("button[data-filter='all']").focus();
     // clicking button with class "category-button"
     $(".category-button").click(function(){
  // get the data-filter value of the button
@@ -76,19 +91,5 @@ $("button[data-filter='all']").focus();
         }
     })
 
-// Effet Image Hero 
 
 
-$( ".meLink" ).mouseover(function() {
-  $( ".photobase" ).addClass( "hidehero" );
-  $( ".photoskill" ).addClass( "hidehero" );
-}).mouseout(function() {
-    $( ".photobase" ).removeClass( "hidehero" );
-    $( ".photoskill" ).removeClass( "hidehero" );
-});
-
-$( ".projectsLink" ).mouseover(function() {
-    $( ".photobase" ).addClass( "hidehero" );
-  }).mouseout(function() {
-      $( ".photobase" ).removeClass( "hidehero" );
-  });

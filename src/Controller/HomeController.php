@@ -23,6 +23,7 @@ class HomeController extends AbstractController
         MailerService $mailer,
         Request $request
     ): Response {
+        
         if ($mailer->sendEmail($request)) {
             $this->addFlash('success', 'Your message has been sent');
 
