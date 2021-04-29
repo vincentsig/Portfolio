@@ -8,7 +8,11 @@
 	<section id="hero">
 		<div class="ctnpage">
 			<div class="hero_imgCtn">
-				<img src="images/background_2.jpg" alt="photo cover">
+				<div class="hero_imgCtn_abs">
+					<img class="photome" src="images/background1.jpg" alt="photo cover">
+					<img class="photoskill" src="images/background2.jpg" alt="photo cover">
+					<img class="photobase" src="images/background.jpg" alt="photo cover">
+				</div>
 			</div>
 			<div class="hero_content">
 				<h1>
@@ -21,15 +25,18 @@
 				<p class="hero_intro_hook">Do you want to know what is behind<span class="hero_intro_hook_undr">_</span>
 				</p>
 				<div class="hero_content_links">
-					<a class="main-link" href="#about">Me</a>
-					<a class="main-link" href="#projects">My Projects</a>
+					<a class="main-link meLink" href="#about">Me</a>
+					<a class="main-link projectsLink" href="#projects">My Projects</a>
 				</div>
 			</div>
 		</div>
+
+	</section>
+	<div class="heropush">
 		<div class="divider divider-hero">
 			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1280.667 200"><path d="M2130,599.067v200L849.333,798.4V735.345s802.144,108.194,1144.517-15.2C2073.5,691.438,2116.163,657.932,2130,599.067Z" transform="translate(-849.333 -599.067)" fill="#f1f1f1"/></svg>
 		</div>
-	</section>
+	</div>
 
 	<section id="about">
 		<div class="ctnpage">
@@ -64,9 +71,7 @@
 	</section>
 
 	<section id="contact">
-		<div class="divider divider-project">
-			<svg xmlns="http://www.w3.org/2000/svg" height="213" viewbox="0 0 1279 213"><path d="M2126,2032s-638.005,177.143-1279,179l1279,34Z" transform="translate(-847 -2032)" fill="#f1f1f1"/></svg>
-		</div>
+
 
 		<div class="ctnpage">
 			<h2>Contact</h2>
@@ -75,6 +80,10 @@
 		</div>
 
 	</section>
-	<div class="background-push"></div>
+	<div class="background-push">
+		<div class="divider divider-project">
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 1279 213"><path d="M2126,2032s-638.005,177.143-1279,179l1279,34Z" transform="translate(-847 -2032)" fill="#f1f1f1"/></svg>
+		</div>
+	</div>
 	{{include ('home/partials/_footer.html.twig')}}
 {% endblock %}

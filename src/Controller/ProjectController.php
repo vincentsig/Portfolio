@@ -18,44 +18,20 @@ class ProjectController extends AbstractController
      * @param Project $project
      * @return Response
      */
-    public function show(Project $project): Response
+    public function show(Project $project,ProjectRepository $repo): Response
     {
-        
+     
+        $next = $repo->getNextProject($project->getId());
+        $previous = $repo->getPreviousProject($project->getId());
 
         return $this->render(
             'project/show.html.twig',
             [
             "project" => $project,
             "slug" =>$project->getSlug(),
+            "next" => $next,
+            "previous" => $previous,
         ]
         );
     }
-
-    /**
-     * @Route("/projects", name="app_list")
-     *  
-     */
-    public function index(ProjectRepository $repo, Request $request): Response
-    {
-        $limit = 1;
-
-        $page = $request->query->get("page", 1);
-        $projects = $repo->getPaginatedAnnonces($page, $limit);
-        $totalProjects = count($repo->findAll());
-
-
-        return $this->render(
-            'project/show.html.twig',
-            [
-            "projects" => $projects,
-            "page" => $page,
-            "total" => $totalProjects,
-            "limit" => $limit,
-            
-            
-        ]
-        );
-    }
-
-
 }

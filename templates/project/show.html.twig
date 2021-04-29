@@ -5,56 +5,58 @@
 {% endblock %}
 
 {% block body %}
-	{% for project in projects %}
 
 
-		<section id="project-show_head">
-			<div class="ctnpage">
-				<h1>{{project.name}}</h1>
+	<section id="project-show_head">
+		<div class="ctnpage">
+			<h1>{{project.name}}</h1>
 
-				<p class="description">{{project.description}}</p>
+			<p class="description">{{project.description}}</p>
 
-				<div class="ctntechnos">
-					{% for techno in project.technos %}
+			<div class="ctntechnos">
+				{% for techno in project.technos %}
 
-						<div class="techno">
-							{{techno.name}}
-						</div>
-					{% endfor %}
-				</div>
-
-				<div class="ctnlinks">
-					{% if project.urlGithub %}
-						<a href="{{project.urlGithub}}" class="link">
-							GitHub
-						</a>
-					{% endif %}
-					{% if project.urlWebsite %}
-						<a href="{{project.urlWebsite}}" class="link">
-							WebSite
-						</a>
-					{% endif %}
-				</div>
+					<div class="techno">
+						{{techno.name}}
+					</div>
+				{% endfor %}
 			</div>
-		</section>
 
-		<section id="project-show_content">
-			<div class="ctnpage">
-				{{project.content|raw}}
+			<div class="ctnlinks">
+				{% if project.urlGithub %}
+					<a href="{{project.urlGithub}}" class="link">
+						GitHub
+					</a>
+				{% endif %}
+				{% if project.urlWebsite %}
+					<a href="{{project.urlWebsite}}" class="link">
+						WebSite
+					</a>
+				{% endif %}
 			</div>
-		{% endfor %}
+		</div>
+	</section>
 
-		{% set pages = ((total / limit|round(0,'ceil'))) %}
+	<section id="project-show_content">
+		<div class="ctnpage">
+			{{project.content|raw}}
+		</div>
+
 
 		<div class="ctnnavigation">
-			{% if page != 1 %}
 
-				<a href="?page={{ page - 1 }}">Previous</a>
+			{% if previous %}
+				<a href="{{path('app_project_show',{'slug':previous}) }}">Previous</a>
+			{% else %}
+				<a href="" style="background:grey">first</a>
 			{% endif %}
-			{% if page != pages %}
 
-				<a href="?page={{ page + 1 }}">Next</a>
+			{% if next %}
+				<a href="{{path('app_project_show',{'slug':next}) }}">next</a>
+			{% else %}
+				<a href="" style="background:grey">last</a>
 			{% endif %}
+
 		</div>
 
 	</section>

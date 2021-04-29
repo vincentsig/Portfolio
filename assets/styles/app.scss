@@ -52,15 +52,17 @@ h2 {
   text-transform: uppercase;
   position: relative;
   margin-bottom: 22px;
-  color: black;
+  letter-spacing: 0.2rem;
+  color: $bgblack;
+
   &::after {
     content: "";
     background: $underdecolight;
     position: absolute;
-    bottom: -4px;
+    bottom: -6px;
     left: 0px;
     height: 1.5px;
-    width: 75%;
+    width: 13vw;
   }
 }
 
@@ -71,18 +73,36 @@ img {
 header {
   background-color: $bgblack;
   width: 100%;
-}
+  z-index: 4;
+  position: relative;
 
-.ctnheader {
-  padding: 15px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  width: 100%;
-  height: 5vh;
-  max-width: 1280px;
-  margin: auto;
+  .customnav {
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: auto;
+    height: 5vh;
+  }
+
+  nav {
+    .navbar-collapse {
+      padding: 1em 2em;
+    }
+
+    .nav-link {
+      font-size: 1.5em;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+      color: white;
+      font-size: 1.5em;
+      transition: all 2s ease-in-out;
+
+      &:hover {
+        color: white;
+        transition: all 2s ease-in-out;
+      }
+    }
+  }
 }
 
 .main-link {
@@ -91,11 +111,13 @@ header {
   display: inline-block;
   font-size: 1.15em;
   transition: all 0.2s ease;
+
   &:hover {
     color: darken(white, 40%);
     transition: all 0.2s ease;
     text-decoration: none;
   }
+
   &::after {
     content: "";
     background: $primarycolor;
@@ -111,11 +133,28 @@ header {
   .ctnpage {
     padding: 0px 30px;
   }
+
+  header .customnav {
+    height: 6vh;
+  }
+
+  #navbarNav {
+    justify-content: flex-end;
+
+    .nav-link {
+      padding: 0 1rem;
+    }
+  }
 }
 
 @media only screen and (min-width: 1280px) {
   .ctnpage {
     padding: 0px 30px;
+  }
+
+  h2 {
+    font-size: 2.5em;
+    letter-spacing: 0.2rem;
   }
 }
 
@@ -128,19 +167,36 @@ header {
 }
 
 .divider-hero {
-  margin-top: -270px;
-  bottom: 0;
+  bottom: -1px;
 }
 
 #hero .ctnpage {
   display: flex;
   flex-direction: column;
-  height: 95vh;
+  height: 94vh;
   align-items: center;
+  padding-top: 2em;
+  max-width: 2000px;
 }
 
 .hero_imgCtn {
-  background: url("../../public/images/background.jpg") no-repeat;
+  position: relative;
+  width: 100%;
+  display: block;
+  height: 40vh;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 40vh;
+  }
+}
+
+.hidehero {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
 }
 
 .hero_content {
@@ -148,9 +204,11 @@ header {
   text-align: center;
   margin: 20px 0;
   padding: 0 20px;
+
   h1 {
     font-size: 1.2em;
     margin: 30px 0px;
+
     .hero_content_name {
       font-family: $titlefont;
       text-transform: uppercase;
@@ -166,9 +224,11 @@ header {
     0% {
       opacity: 0;
     }
+
     40% {
       opacity: 1;
     }
+
     100% {
       opacity: 0;
     }
@@ -185,41 +245,74 @@ header {
   }
 }
 
+.heropush {
+  position: relative;
+  width: 100%;
+  margin-top: -20px;
+}
+
 @media only screen and (min-width: 728px) {
-  #hero .ctnpage {
-    flex-direction: row-reverse;
-  }
-
-  .hero_content {
-    text-align: left;
-    padding: 0px;
-    width: 40%;
-
-    .hero_content_links {
-      justify-content: flex-start;
-    }
-
-    .main-link:first-child {
-      margin-right: 30px;
-    }
-  }
-
   .hero_imgCtn {
-    width: 60%;
+    img {
+    }
   }
 }
 
 @media only screen and (min-width: 1280px) {
   #hero {
     .ctnpage {
-      max-width: inherit;
+      flex-direction: row-reverse;
+      padding-top: inherit;
+    }
+  }
+
+  .hero_imgCtn {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+
+    .hero_imgCtn_abs {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+    }
+
+    img {
+      max-height: 90vh;
+      bottom: 0;
+      right: 0;
+      top: inherit;
+      height: inherit;
+      transform: inherit;
+      left: inherit;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(23, 23, 23, 0.5);
     }
   }
 
   .hero_content {
+    margin-top: -150px;
+    text-align: left;
+    width: 40%;
+
+    .hero_intro_hook {
+      font-size: 2em;
+    }
+
     h1 {
       font-size: 3vw;
       line-height: 3vw;
+
       .hero_content_name {
         font-size: 3.2vw;
         line-height: 3.2vw;
@@ -227,9 +320,21 @@ header {
     }
   }
 
+  .hero_content .main-link:first-child {
+    margin-right: 67px;
+  }
+
   .hero_content_links {
+    position: absolute;
+    display: block;
+    bottom: 190px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    justify-content: flex-start;
+
     .main-link {
-      font-size: 1.5em;
+      font-size: 4em;
     }
   }
 }
@@ -249,6 +354,8 @@ header {
 .divider-about {
   top: 0;
   fill: $bgligth;
+  display: none;
+
   svg {
     position: relative;
     display: block;
@@ -262,12 +369,15 @@ header {
   flex-direction: column;
   background: $bgligth;
   padding: 0;
+
   .about_me {
     background: $bgligth;
     padding: 40px 20px;
+
     p {
       text-align: justify;
       color: $maintext;
+
       .special {
         color: $bgblack;
       }
@@ -276,25 +386,36 @@ header {
 }
 
 @media only screen and (min-width: 728px) {
+  .divider-about {
+    display: block;
+  }
+
   #about > .ctnpage {
     display: flex;
     flex-direction: row-reverse;
+
     .about_me {
       width: 50%;
       padding: 40px 20px;
+
       .ctnpage {
         padding: 0 20px;
       }
+
       h2 {
         text-align: right;
+
         &::after {
           right: 0;
           left: inherit;
         }
       }
+
       p {
         text-align: right;
         color: $maintext;
+        border-radius: 6px;
+
         .special {
           color: $bgblack;
         }
@@ -308,6 +429,7 @@ header {
     background: $bgligth;
     padding: 80px 0;
   }
+
   .ctnpage {
     position: relative;
   }
@@ -315,7 +437,7 @@ header {
   .about_me {
     p {
       position: absolute;
-      top: 50px;
+      top: 90%;
       background: $bgligth;
       left: -20%;
       z-index: 2;
@@ -324,6 +446,7 @@ header {
     }
   }
 }
+
 /*
 /////////////SKILLS////////////
 */
@@ -331,8 +454,11 @@ header {
 .bg_skills {
   background: $bgblack;
   border-bottom: 4px;
-  width: 100%;
+  width: 90%;
   padding: 50px 0px;
+  border-radius: 6px;
+  margin: auto;
+
   h3 {
     color: white;
     text-transform: uppercase;
@@ -352,6 +478,7 @@ header {
   font-size: 11px;
   margin: 0 auto;
   padding-left: 31px;
+
   li {
     position: relative;
     height: 90px;
@@ -359,10 +486,12 @@ header {
     margin: 0 5px;
     float: left;
   }
+
   .ctn2_skills_list_box {
     padding-top: 100px;
   }
 }
+
 .skills_list_box {
   opacity: 0.9;
   display: flex;
@@ -375,20 +504,24 @@ header {
   width: 90px;
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
+
   &:hover {
     opacity: 1;
     transition: all 0.2s ease-in-out;
     transform: scale(1.2);
     z-index: 2;
   }
+
   .skill_list_box_img {
     height: 25px;
   }
 }
+
 .box_one {
   background: white;
   border: 2px #575757 solid;
 }
+
 .box_two {
   background: #171717;
   border: 2px white solid;
@@ -400,6 +533,7 @@ header {
     width: 50%;
   }
 }
+
 /*
 /////////////PROJECTS////////////
 */
@@ -407,8 +541,10 @@ header {
 #projects {
   position: relative;
   padding-top: 125px;
+
   h2 {
     color: white;
+
     &::after {
       background: $underdecodark;
     }
@@ -416,20 +552,22 @@ header {
 }
 
 .divider-project {
-  top: 107px;
+  top: -13vw;
 }
 
 /* Filtres Porfolio Gallery */
 .category-button {
   color: $bgblack;
   background: white;
-  margin: 0 0.3em;
+  margin: 0 0.3em 1em;
   border-radius: 2px;
   padding: 0.2rem 0.8rem;
   border: none;
+
   &:hover {
     background: darken(white, 20%);
   }
+
   &:focus {
     background: $primarycolor;
     color: white;
@@ -445,6 +583,7 @@ header {
   grid-gap: 30px;
   margin: 15vh auto 0;
 }
+
 /* Projet Porfolio Gallery */
 .portfolio_gallery_project {
   width: 260px;
@@ -454,17 +593,21 @@ header {
   display: block;
   transition: all ease-in-out;
   margin: auto;
+  overflow: hidden;
 }
 
 .portfolio_gallery_project_img {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  transition: all 3 ease-in-out;
+  transition: all 0.2s ease-in-out;
   filter: grayscale(1);
+  transform: scale(1);
+
   &:hover {
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
     filter: url("#duotone_vince");
-    transition: all 3 ease-in-out;
   }
 }
 
@@ -472,6 +615,7 @@ header {
   display: block;
   background: $bgblack;
   color: white;
+  letter-spacing: 0.15rem;
   position: absolute;
   bottom: 1em;
   padding: 10px 20px;
@@ -500,31 +644,54 @@ header {
 
 #contact {
   position: relative;
+
   h2 {
     color: white;
     text-align: right;
+    margin-bottom: 100px;
+
     &::after {
       right: 0;
       left: inherit;
       background: $underdecodark;
     }
   }
+
   background: $bgblack;
   width: 100%;
+
   .ctnpage {
     padding: 0 20px;
   }
 }
 
+.ctn-image {
+  img {
+    margin: auto;
+    display: block;
+  }
+}
+
+.background-push {
+  display: none;
+}
+
 @media only screen and (min-width: 728px) {
+  .background-push {
+    display: block;
+  }
+
   #contact {
     .ctn-contact {
       display: flex;
       flex-direction: row;
     }
+
     .ctn-image {
       width: 50%;
+      margin: inherit;
     }
+
     .form-contact {
       width: 50%;
       z-index: 2;
@@ -532,21 +699,124 @@ header {
   }
 }
 
+@media only screen and (min-width: 1200px) {
+  #contact {
+    .ctn-image {
+      margin-top: -50px;
+
+      img {
+        height: 400px;
+      }
+    }
+  }
+}
+
 .contact-form {
   background-color: white;
+  padding: 2em;
+  overflow: hidden;
+  border-radius: 6px;
+
+  .contact-form_send {
+    background: inherit;
+    border: 0;
+    font-size: 1.6em;
+    margin-top: 0.4em;
+    text-align: right;
+    float: right;
+    border-bottom: 4px solid $primarycolor;
+    padding: 0;
+
+    &:hover {
+      color: lighten($bgblack, 20%);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border-bottom: 4px solid lighten($primarycolor, 10%);
+    }
+  }
 }
 
 ////////////////FOOTER////////////////
 .background-push {
   width: 100%;
-  height: 400px;
+  height: 270px;
   background: $bgligth;
-  margin-top: -300px;
+  margin-top: -181px;
   z-index: 1;
+  position: relative;
 }
 
-.footer {
+footer {
   color: #cccccc;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .divider-footer {
+    top: 0;
+    left: 0;
+    position: relative;
+    z-index: 1;
+    display: none;
+
+    svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 50px;
+      fill: #f1f1f1;
+    }
+  }
+
+  .rs {
+    display: flex;
+    justify-content: center;
+    font-size: 1.5em;
+    z-index: 2;
+    margin-top: -20px;
+
+    a.circle {
+      padding: 4px;
+      background: white;
+      border-radius: 50%;
+      width: 45px;
+      margin: 0 2px;
+      height: 45px;
+      text-align: center;
+      border: 2px solid $bgblack;
+      transition: all 0.2s ease-in-out;
+      color: $bgblack;
+
+      &:hover {
+        background-color: $primarycolor;
+        color: white;
+        border: 2px solid white;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+  }
+
+  p {
+    margin: 2em auto;
+
+    i {
+      font-size: 1.9em;
+      vertical-align: middle;
+    }
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  footer {
+    .divider-footer {
+      display: block;
+    }
+
+    .rs {
+      margin-top: -20px;
+    }
+  }
 }
 
 //////////////PROJECT SHOW////////////////
@@ -554,7 +824,8 @@ header {
 #project-show_head {
   display: flex;
   flex-direction: column;
-  padding: 2em 0;
+  padding: 4em 0;
+
   .ctnpage {
     padding: 0px 40px;
   }
@@ -564,14 +835,13 @@ header {
     font-size: 2em;
     color: white;
     font-family: $titlefont;
-    margin-bottom: 2em;
     text-align: center;
     letter-spacing: 0.2rem;
   }
 
   .description {
     max-width: 900px;
-    margin: 2em auto;
+    margin: 3em auto;
     color: white;
     text-align: justify;
   }
@@ -581,7 +851,7 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 2em;
+
     .techno {
       color: white;
       border: 2px $primarycolor solid;
@@ -597,6 +867,7 @@ header {
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .link {
     font-size: 1.2em;
     color: white;
@@ -605,6 +876,7 @@ header {
     margin: 0 0.5em 1em;
     border-radius: 4px;
     transition: background ease 0.4s;
+
     &:hover {
       text-decoration: none;
       background: darken($primarycolor, 4%);
@@ -616,14 +888,17 @@ header {
 #project-show_content {
   background: $bgligth;
   color: $bgblack;
-  padding: 2em 40px;
+  padding: 4em 40px;
+
   .ctnpage {
     text-align: left;
+
     img {
       max-width: 100%;
       border: 1px solid gray;
       height: auto;
       width: 100%;
+      margin: 1em 0;
     }
   }
 
@@ -632,6 +907,7 @@ header {
     justify-content: space-between;
     margin: 1em auto;
     max-width: 2000px;
+
     a {
       color: white;
       background: $primarycolor;
@@ -639,6 +915,7 @@ header {
       margin: 0 0.5em 1em;
       border-radius: 4px;
       transition: background ease 0.4s;
+
       &:hover {
         text-decoration: none;
         background: darken($primarycolor, 4%);
@@ -648,14 +925,26 @@ header {
   }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 720px) {
+  #project-show_head {
+    .ctntechnos,
+    .ctnlinks {
+      max-width: 900px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1200px) {
   #project-show_head {
     h1 {
       text-align: left;
+      font-size: 3em;
     }
-    .ctntechnos,
-    .ctntlinks {
+
+    .ctnlinks,
+    .ctntechnos {
       justify-content: flex-start;
+      margin: 0 auto;
     }
   }
 }

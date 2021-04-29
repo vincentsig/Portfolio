@@ -76,4 +76,19 @@ $("button[data-filter='all']").focus();
         }
     })
 
+// Effet Image Hero 
 
+
+$( ".meLink" ).mouseover(function() {
+  $( ".photobase" ).addClass( "hidehero" );
+  $( ".photoskill" ).addClass( "hidehero" );
+}).mouseout(function() {
+    $( ".photobase" ).removeClass( "hidehero" );
+    $( ".photoskill" ).removeClass( "hidehero" );
+});
+
+$( ".projectsLink" ).mouseover(function() {
+    $( ".photobase" ).addClass( "hidehero" );
+  }).mouseout(function() {
+      $( ".photobase" ).removeClass( "hidehero" );
+  });

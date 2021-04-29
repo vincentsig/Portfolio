@@ -19,15 +19,38 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
-    public function getPaginatedAnnonces($page, $limit)
-    {
-        $query = $this->createQueryBuilder('p')
-            ->orderBy('p.createdAt', 'ASC')
-            ->setFirstResult(($page * $limit) - $limit) // offset
-            ->setMaxResults($limit); // limit of the element
 
-        return $query->getQuery()->getResult();     
+    public function getNextProject($projectId){
+        $query = $this->createQueryBuilder('p')
+        ->andWhere('p.id > :id')
+        ->select('p.slug')
+        ->orderBy('p.createdAt', 'ASC')
+        ->setMaxResults(1)
+        ->setParameter('id', $projectId);
+
+        return $this->getSlug($query->getQuery()->getResult());
+    } 
+
+    
+    public function getPreviousProject($projectId){
+        $query = $this->createQueryBuilder('p')
+        ->andWhere('p.id < :id')
+        ->select('p.slug')
+        ->orderBy('p.createdAt', 'DESC')
+        ->setMaxResults(1)
+        ->setParameter('id', $projectId);
+        
+       return $this->getSlug($query->getQuery()->getResult());
+    } 
+
+    private function getSlug($result)
+    {
+        if($result){
+            return $result[0]['slug'];
+        }
+        return null;
     }
+
 
 
 
