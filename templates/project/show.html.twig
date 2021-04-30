@@ -10,7 +10,11 @@
 	<section id="project-show_head">
 		<div class="ctnpage">
 			<h1>{{project.name}}</h1>
-
+			<div>
+				<object data="your_url_to_pdf" type="application/pdf">
+					<embed src="uploads/pdf/cachier.pdf" type="application/pdf" width="100%" height="600px"/>
+				</object>
+			</div>
 			<p class="description">{{project.description}}</p>
 
 			<div class="ctntechnos">
@@ -24,12 +28,12 @@
 
 			<div class="ctnlinks">
 				{% if project.urlGithub %}
-					<a href="{{project.urlGithub}}" class="link">
+					<a href="{{project.urlGithub}}" class="link" target="_blank">
 						GitHub
 					</a>
 				{% endif %}
 				{% if project.urlWebsite %}
-					<a href="{{project.urlWebsite}}" class="link">
+					<a href="{{project.urlWebsite}}" class="link" target="_blank">
 						WebSite
 					</a>
 				{% endif %}

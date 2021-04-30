@@ -5,6 +5,7 @@ twig:
 
 fos_ck_editor:
   default_config: basic_config
+
   configs:
     basic_config:
       toolbar: full
