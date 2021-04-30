@@ -74,17 +74,19 @@ class SkillController extends AbstractController
      * @param FileUploader $uploader
      * @return Response
      */
-    public function edit(Request $request, Skill $skill, FileUploader $uploader): Response
+    public function edit(Request $request, Skill $skill, FileUploader $uploader, SkillRepository $repo): Response
     {
+        $originalMedia = $repo->find($skill)->getMedia()->getPath();
         $form = $this->createForm(SkillType::class, $skill)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($skill->getMedia() && $form->getData()->getMedia()) {
-                $uploader->removeFile($skill->getMedia());
+         
+            if ($form->getData()->getMedia()->getFile()) {
+                $uploader->upload($skill->getMedia());
+                $uploader->removeFile($originalMedia);
             }
 
-            $uploader->upload($skill->getMedia());
-
+            $this->em->persist($skill->getMedia());
             $this->em->persist($skill);
             $this->em->flush();
 

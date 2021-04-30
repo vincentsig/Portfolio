@@ -7,7 +7,7 @@ parameters:
   uploadDir: "images"
   uploadAbsoluteDir: "%kernel.project_dir%/public/uploads/%uploadDir%"
   uploadDirImages: "%kernel.project_dir%/public/uploads/"
-  email: "contact@vincent-signoret.com"
+  email: "contact@vincentsignoret.com"
 
 services:
   # default configuration for services in *this* file

@@ -75,13 +75,14 @@ class TechnoController extends AbstractController
         $form = $this->createForm(TechnoType::class, $techno)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $this->em->persist($techno);
             $this->em->flush();
 
             return $this->redirectToRoute('app_techno_list');
         }
 
-        return $this->render('techno/edit.html.twig', [
+        return $this->render('admin/techno/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
