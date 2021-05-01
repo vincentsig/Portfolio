@@ -4,13 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Edit skill</h1>
-	<div>
-		{% if skill.media.path is defined %}
-			<img src="{{asset('build/' ~ skill.media.path ) }}" alt="test">
-		{% else %}
-			<img src="{{asset('build/images/icone_default.png') }}" alt="test">
-		{% endif %}
+
+	<div class="container">
+		<h1>Edit skill</h1>
 		{{include ('admin/skill/_form.html.twig')}}
 	</div>
 

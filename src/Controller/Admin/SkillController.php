@@ -95,7 +95,7 @@ class SkillController extends AbstractController
             return $this->redirectToRoute('app_skill_list');
         }
 
-        return $this->render("admin/skill/Edit.html.twig", [
+        return $this->render("admin/skill/edit.html.twig", [
             "form" => $form->createView(),
             "skill" => $skill,
             ]);
