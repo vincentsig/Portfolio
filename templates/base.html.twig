@@ -15,6 +15,9 @@
 	</head>
 
 	<body>
+		<script>
+			document.getElementsByTagName('html')[0].className = 'js';
+		</script>
 		{% for flash_message in app.session.flashBag.get('success') %}
 			<div class="alert alert-success" role="alert">
 				<strong>Superbe !</strong>

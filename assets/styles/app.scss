@@ -25,12 +25,21 @@ $titlefont: "apex_mk3medium", sans-serif;
 /*
 /////////////GENERAL STYLES////////////
 */
+body,
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: $bgblack;
   font-family: $mainfont, Arial, Helvetica, sans-serif;
   width: 100%;
   overflow-x: hidden;
+}
+
+.js,
+.ctnpage {
+  visibility: hidden;
 }
 
 .ctnpage {
@@ -84,9 +93,22 @@ header {
     height: 5vh;
   }
 
+  .navbar-dark .navbar-toggler {
+    color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.1);
+    border: none;
+  }
+
   nav {
     .navbar-collapse {
-      padding: 1em 2em;
+      ul {
+        padding: 1em 2em;
+      }
+    }
+
+    .navbar-collapse.collapse.show {
+      height: 95vh;
+      background: #171717;
     }
 
     .nav-link {
@@ -111,6 +133,7 @@ header {
   position: relative;
   display: inline-block;
   font-size: 1.15em;
+  opacity: 0;
   transition: all 0.2s ease;
 
   &:hover {
@@ -168,7 +191,7 @@ header {
 }
 
 .divider-hero {
-  bottom: -1px;
+  bottom: -2px;
 }
 
 #hero .ctnpage {
@@ -198,6 +221,10 @@ header {
 .hidehero {
   opacity: 0;
   transition: opacity 0.5s ease-in;
+}
+
+.hideherobrut {
+  opacity: 0;
 }
 
 .hero_content {
@@ -290,7 +317,7 @@ header {
       position: absolute;
       width: 100%;
       height: 100%;
-      background-color: rgba(23, 23, 23, 0.5);
+      background-color: rgba(23, 23, 23, 0.2);
     }
   }
 
@@ -638,6 +665,7 @@ header {
 
 #contact {
   position: relative;
+  overflow: hidden;
 
   h2 {
     color: white;

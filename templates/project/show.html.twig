@@ -9,7 +9,7 @@
 
 	<section id="project-show_head">
 		<div class="ctnpage">
-			<h1>{{project.name}}</h1>
+			<h1 class="project-show_head_h1">{{project.name}}</h1>
 
 			<p class="description">{{project.description}}</p>
 
@@ -24,12 +24,12 @@
 
 			<div class="ctnlinks">
 				{% if project.urlGithub %}
-					<a href="{{project.urlGithub}}" class="link" target="_blank">
+					<a href="{{project.urlGithub}}" class="link">
 						GitHub
 					</a>
 				{% endif %}
 				{% if project.urlWebsite %}
-					<a href="{{project.urlWebsite}}" class="link" target="_blank">
+					<a href="{{project.urlWebsite}}" class="link">
 						WebSite
 					</a>
 				{% endif %}

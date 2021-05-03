@@ -16,14 +16,26 @@ require('bootstrap');
 import './bootstrap';
 import './animation.js';
 
+
+
+
+
+
+// Collaps nav on click mobile
+$('.navbar-nav>li>a').on('click', function(){
+    $('.navbar-collapse').collapse('hide');
+});
+
+// Ajout des classes sur les imgs project
+$('#project-show_content img').addClass('project-show_content_img');
 // Effet Image Hero 
 
 $( ".meLink" ).mouseover(function() {
+    $( ".photoskill" ).addClass( "hideherobrut" );
     $( ".photobase" ).addClass( "hidehero" );
-    $( ".photoskill" ).addClass( "hidehero" );
   }).mouseout(function() {
       $( ".photobase" ).removeClass( "hidehero" );
-      $( ".photoskill" ).removeClass( "hidehero" );
+      $( ".photoskill" ).removeClass( "hideherobrut" );
   });
   
   $( ".projectsLink" ).mouseover(function() {
@@ -31,6 +43,7 @@ $( ".meLink" ).mouseover(function() {
     }).mouseout(function() {
         $( ".photobase" ).removeClass( "hidehero" );
     });
+
 
 
 // Skill partials 
