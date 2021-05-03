@@ -9,17 +9,23 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="{{path('app_home')}}">Home</a>
 				</li>
+
+				{% set home_path = null %}
+				{% if app.request.get('_route') != 'app_home' %}
+					{% set home_path = path('app_home')	%}
+				{% endif %}
+
 				<li class="nav-item">
-					<a class="nav-link" href="#about">Me</a>
+					<a class="nav-link" href="{{ home_path ~ '#about'}} ">Me</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#projects">Projects</a>
+					<a class="nav-link" href="{{ home_path ~ '#projects'}} ">Projects</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#contact">Contact</a>
+					<a class="nav-link" href="{{ home_path ~ '#contact'}}">Contact</a>
 				</li>
+
 			</ul>
 		</div>
 	</nav>
-
 </header>

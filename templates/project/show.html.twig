@@ -48,13 +48,13 @@
 			{% if previous %}
 				<a href="{{path('app_project_show',{'slug':previous}) }}">Previous</a>
 			{% else %}
-				<a href="" style="background:grey">first</a>
+				<a href="" style="opacity:0">first</a>
 			{% endif %}
 
 			{% if next %}
 				<a href="{{path('app_project_show',{'slug':next}) }}">next</a>
 			{% else %}
-				<a href="" style="background:grey">last</a>
+				<a href="" style="opacity:0">last</a>
 			{% endif %}
 
 		</div>
