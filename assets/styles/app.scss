@@ -360,6 +360,19 @@ header {
   }
 }
 
+@media only screen and (min-width: 2380px) {
+  .hero_content {
+    h1 {
+      font-size: 71px;
+      line-height: 71px;
+      .hero_content_name {
+        font-size: 76px;
+        line-height: 76px;
+      }
+    }
+  }
+}
+
 /*
 ///////////ABOUT//////////
 */
@@ -475,9 +488,8 @@ header {
 .bg_skills {
   background: $bgblack;
   border-bottom: 4px;
-  width: 90%;
+  width: 100%;
   padding: 50px 0px;
-  border-radius: 6px;
   margin: auto;
 
   h3 {
@@ -547,6 +559,13 @@ header {
   background: #171717;
   border: 2px white solid;
   color: white;
+}
+
+@media only screen and (min-width: 380px) {
+  .bg_skills {
+    width: 90%;
+    border-radius: 6px;
+  }
 }
 
 @media only screen and (min-width: 728px) {
